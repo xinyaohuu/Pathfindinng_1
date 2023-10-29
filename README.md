@@ -5,7 +5,6 @@ A {x} * {y} grid map with {(x)*(y)} blue dots(with x from 0 to {x} and y from 0 
 
 # Step 1: Generate random obstacles
   1. Due to small mapsize, percentage of obstacles are indentical, so we can manully delete those rows
-
   2. Grid size: 3*3 to 11*11,Percentage of obstacles: 0%, 5%, 10%, 15%, 20%, 25%, Number of groups: 10 for each percentage
 
 # Step 2: Use Dijkstra and astar to find the shortest path
