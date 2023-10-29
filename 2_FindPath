@@ -29,7 +29,7 @@ with open(input_file_path, 'r') as file:
         path2 = a_star(g, src, dest)
 
         # Add path1 and path2 to the row
-        row.extend([str(path1), str(path2)])
+        row.extend([str(path1), str(path2),len(path1)])
 
         # Append the modified row to the list of rows
         rows.append(row)
@@ -39,7 +39,7 @@ with open(output_file_path, 'w', newline='') as output_file:
     csv_writer = csv.writer(output_file)
 
     # Write the header
-    csv_writer.writerow(header + ['dmethod', 'astar'])
+    csv_writer.writerow(header + ['dmethod', 'astar', 'mini_len'])
 
     # Write the rows with path1 and path2 added
     csv_writer.writerows(rows)
