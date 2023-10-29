@@ -1,0 +1,74 @@
+import openai
+import csv
+from tqdm import tqdm
+import time
+
+
+
+
+
+# Set your API key
+openai.api_key = "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"
+i = 0
+
+
+# Read obstacle coordinates from a CSV file
+with open('RandomObs_with_paths.csv', 'r') as csv_file:
+    csv_reader = csv.DictReader(csv_file)
+    
+
+    for row in tqdm(csv_reader):
+        i = i+1
+        # Assuming your CSV file has a column named "obs_coordinates" containing the obstacle coordinates
+        obs_coordinates = eval(row['obstacles'])
+        x, y = map(int, row['mapsize'].split(' * '))  # Extract x and y from the 'mapsize' column
+
+
+        p1 = f"A {x} * {y} grid map with {(x)*(y)} blue dots(with x from 0 to {x} and y from 0 to {y}) representing coordinates and lines connecting them. Each adjacent coordinate is connected by a blue straight line, either horizontally or vertically, and the distance of 1. The grid starts from (0,0) at the bottom left and goes up to"
+        p2 = f"{x-1} * {y-1} at the top right. Obstacles on the grid are represented by the absence of blue dots at specific coordinates, as well as the missing adjacent blue lines connecting them. The coordinates with obstacles are:"
+        p3 = str(obs_coordinates)
+        p4 = f" with x and y from 0 to {x-1}, corresponding to the coordinate system. Thus, I need to find the shortest path from (0,0)"
+        p5 = f"to {x-1} * {y-1} to solve this problem you are required 1. moving each step either horizontally or vertically and avoiding obstacles by distance of 1. 2. don't recap the problem, please get straight to solve it 3. you will get the history of this problem which you did before 4. only need text-based path coordinates results "
+
+        my_content = p1 + p2 + p3 + p4 + p5
+
+        try:
+
+            # Send the content to OpenAI for completion
+            completion = openai.ChatCompletion.create(
+                model="gpt-4",
+                messages=[
+                    {"role": "system", "content": "You are a math specialist."},
+                    {"role": "user", "content": f"Solve the math problem: {my_content}."}
+                ],
+            )
+
+            # Extract the response
+            answer = completion['choices'][0]['message']['content']
+
+
+            print("startxinyao")
+            print(f"{i}")
+            print(f"Math problem: {my_content}")
+            print(f"Math specialist's answer: {answer}")
+            print("endxinyao")
+
+            # Extract the path coordinates
+            final = openai.ChatCompletion.create(
+                model="gpt-4",
+                
+                messages = [
+                {"role": "user", "content": f"extract the math answer and form the path coordinates to a list, :{answer}, I only need the coordinate path answer(begin with [ and end with ]), don't recap the problem or give me ideas of soling the problem."},
+
+            ]
+
+            )
+            print("starthu")
+            print(final['choices'][0]['message']['content'])
+            print("endhu")
+        
+        except TimeoutError:
+            print(f"Time exceeded for iteration {i}")
+            continue
+
+        time.sleep(1)
