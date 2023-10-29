@@ -13,7 +13,7 @@ A {x} * {y} grid map with {(x)*(y)} blue dots(with x from 0 to {x} and y from 0 
 
 # Step 4: Format the gpt4 output: complete output and summary output
 
-# Step 5: Check if gpt4 answer is the shortest path
+# Step 5: Compare Dijkstra/astar and gpt4 answer to check if gpt4 answer is the shortest path
     1. length should be equal to the length of Dijkstra 
     2. Bypass the obstacles
     3. Start coordinate and end coordinate should be (0,0) and (x-1,y-1)
