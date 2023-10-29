@@ -91,7 +91,7 @@ for i, (o_coords, d_coords, a_coords, g_coords) in enumerate(zip(obstacles, dmet
 
 # Create a new CSV file with additional columns 'reason_list' and 'check_list'
 with open(csv_output_file_path, 'w', newline='') as output_file:
-    fieldnames = ['mapsize', 'percentage', 'num_obstacles', 'obstacles', 'dmethod', 'astar',
+    fieldnames = ['mapsize', 'percentage', 'Num_obstacles', 'obstacles', 'dmethod', 'astar',
                   '#minimum steps', 'gpt4output', 'gpt4summary', 'gpt4', 'gpt4length',
                   'reason', 'check']
     csv_writer = csv.DictWriter(output_file, fieldnames=fieldnames)
