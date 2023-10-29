@@ -101,7 +101,7 @@ with open(csv_output_file_path, 'w', newline='') as output_file:
         csv_writer.writerow({
             'mapsize': mapsize[i],
             'percentage': percentage[i],
-            '# obstacles': num_obstacles[i],
+            'Num_obstacles': num_obstacles[i],
             'obstacles': str(obstacles[i]),
             'dmethod': str(dmethod[i]),
             'astar': str(astar[i]),
