@@ -8,7 +8,7 @@ import time
 
 
 # Set your API key
-openai.api_key = "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"
+openai.api_key = "x"
 i = 0
 
 
