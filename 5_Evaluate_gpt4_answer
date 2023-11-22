@@ -1,13 +1,10 @@
-# update if condition to tell if this is the shortest path
 
 import csv
 import math
 
-# Define the CSV file path
 csv_file_path = 'newgrid_2.csv'
 csv_output_file_path = 'newgrid_2_with_columns.csv'
 
-# Initialize lists to store the data from different columns
 mapsize = []
 percentage = []
 num_obstacles = []
@@ -22,7 +19,7 @@ length = []
 
 
 
-# Read data from the CSV file and store it in the respective lists
+
 with open(csv_file_path, 'r', newline='') as file:
     csv_reader = csv.DictReader(file)
     for row in csv_reader:
@@ -37,7 +34,6 @@ with open(csv_file_path, 'r', newline='') as file:
         gpt4summary.append(row['gpt4summary'])
         
         
-        # Check if 'gpt4' contains a valid list or is empty
         try:
             gpt4.append(eval(row['gpt4']))
         except:
@@ -46,8 +42,6 @@ with open(csv_file_path, 'r', newline='') as file:
         length.append(row['length'])
 
 
-
-# Helper function to calculate the distance between two coordinates
 def calculate_distance(coord1, coord2):
     x1, y1 = coord1
     x2, y2 = coord2
@@ -57,7 +51,7 @@ def calculate_distance(coord1, coord2):
 reason_list = []
 check_list = []
 
-# Compare the lists based on the conditions for each row
+#Compare
 for i, (o_coords, d_coords, a_coords, g_coords) in enumerate(zip(obstacles, dmethod, astar, gpt4)):
 
     if len(g_coords) > 3:
@@ -89,7 +83,7 @@ for i, (o_coords, d_coords, a_coords, g_coords) in enumerate(zip(obstacles, dmet
         reason_list.append(f"Row {i + 1}: Wrong - Invalid path - 2")
         check_list.append("N")
 
-# Create a new CSV file with additional columns 'reason_list' and 'check_list'
+
 with open(csv_output_file_path, 'w', newline='') as output_file:
     fieldnames = ['mapsize', 'percentage', 'Num_obstacles', 'obstacles', 'dmethod', 'astar',
                   '#minimum steps', 'gpt4output', 'gpt4summary', 'gpt4', 'gpt4length',
