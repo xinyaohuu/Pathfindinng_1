@@ -1,20 +1,9 @@
-# Topic: Using gpt4 api to solve the following question
+# Topic: Using gpt4 api to solve the pathfinding math problem in 2D and 3D
 
-A {x} * {y} grid map with {(x)*(y)} blue dots(with x from 0 to {x-1} and y from 0 to {y-1}) representing coordinates and lines connecting them. Each adjacent coordinate is connected by a blue straight line, either horizontally or vertically, and the distance of 1. The grid starts from (0,0) at the bottom left and goes up to {x-1} * {y-1} at the top right. Obstacles on the grid are represented by the absence of blue dots at specific coordinates, as well as the missing adjacent blue lines connecting them. The coordinates with obstacles are:(obs_coordinates) with x and y from 0 to {x-1}, corresponding to the coordinate system. Thus, I need to find the shortest path from (0,0)to {x-1} * {y-1} to solve this problem you are required 1. moving each step either horizontally or vertically and avoiding obstacles by distance of 1. 2. don't recap the problem, please get straight to solve it 3. you will get the history of this problem which you did before 4. only need text-based path coordinates results "
+1. Creates grid database: grid size: 3*3 to 11*11 percentage of obstacles: 0%, 5%, 10%, 15%, 20%, 25%, Number of groups: 10 for each percentage
 
+2. Use Dijkstra as distance benchmark
 
-# Step 1: Generate random obstacles
-    1. Grid size: 3*3 to 11*11,Percentage of obstacles: 0%, 5%, 10%, 15%, 20%, 25%, Number of groups: 10 for each percentage
+3. Use gpt4 api to find the shortest path 
 
-# Step 2: Use Dijkstra and Astar to find the shortest path
-
-# Step 3: Use gpt4 api to find the shortest path 
-
-# Step 4: Format the gpt4 output: complete output and summary output
-
-# Step 5: Compare Dijkstra/astar and gpt4 answer to evaluate if gpt4 answer is the shortest path
-* we cannot tell the no path answer by code, you can check it manually
-    1. length should be equal to the length of Dijkstra 
-    2. Bypass the obstacles
-    3. Start coordinate and end coordinate should be (0,0) and (x-1,y-1)
-    3. Each step should be 1
+4. Evaluate gpt4 abilities to find the shortest path
