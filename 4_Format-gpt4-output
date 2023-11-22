@@ -50,8 +50,6 @@ print(f'{len(answers)} answers and {len(alternative_answers)} alternative answer
 
 ##Cleanup path = 只需要把包含o and ...的去掉 -wrong_just for backup
 
-import csv
-import re
 import ast
 
 input_csv_path = f"{fff}.csv"
