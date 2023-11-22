@@ -1,4 +1,4 @@
-# Topic: Using gpt4 api to solve the pathfinding math problem in 2D and 3D
+Topic: Using gpt4 api to solve the pathfinding math problem in 2D and 3D
 
 1. Creates grid database: grid size: 3*3 to 11*11 percentage of obstacles: 0%, 5%, 10%, 15%, 20%, 25%, Number of groups: 10 for each percentage
 
