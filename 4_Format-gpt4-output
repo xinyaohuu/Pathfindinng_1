@@ -40,11 +40,7 @@ for i in range(max_length):
 
 with open(output_file_path, 'w', newline='') as csv_file:
     csv_writer = csv.writer(csv_file)
-    
-    # Write the header row
     csv_writer.writerow(['Answer', 'Alternative Answer'])
-    
-    # Write the data rows
     csv_writer.writerows(csv_data)
 
 print(f'{len(answers)} answers and {len(alternative_answers)} alternative answers extracted and saved to {output_file_path}.')
