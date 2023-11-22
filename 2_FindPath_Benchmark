@@ -4,11 +4,9 @@ from astar import a_star
 
 import csv
 
-# Define the input and output file paths
-input_file_path = 'RandomObs.csv'  # Replace with your CSV file path
-output_file_path = 'RandomObs_with_paths.csv'  # New CSV file with additional columns
+input_file_path = 'RandomObs.csv'  
+output_file_path = 'RandomObs_with_paths.csv' 
 
-# Read the CSV file and create a list to store rows
 rows = []
 
 with open(input_file_path, 'r') as file:
@@ -34,14 +32,9 @@ with open(input_file_path, 'r') as file:
         # Append the modified row to the list of rows
         rows.append(row)
 
-# Write the modified data to a new CSV file
 with open(output_file_path, 'w', newline='') as output_file:
     csv_writer = csv.writer(output_file)
-
-    # Write the header
     csv_writer.writerow(header + ['dmethod', 'astar', 'mini_len'])
-
-    # Write the rows with path1 and path2 added
     csv_writer.writerows(rows)
 
 print("New CSV file with path1 and path2 columns created:", output_file_path)
