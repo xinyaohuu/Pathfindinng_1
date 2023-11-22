@@ -4,8 +4,7 @@ A {x} * {y} grid map with {(x)*(y)} blue dots(with x from 0 to {x-1} and y from 
 
 
 # Step 1: Generate random obstacles
-    1. Due to small mapsize, percentage of obstacles are identical, so we can manually delete those rows
-    2. Grid size: 3*3 to 11*11,Percentage of obstacles: 0%, 5%, 10%, 15%, 20%, 25%, Number of groups: 10 for each percentage
+    1. Grid size: 3*3 to 11*11,Percentage of obstacles: 0%, 5%, 10%, 15%, 20%, 25%, Number of groups: 10 for each percentage
 
 # Step 2: Use Dijkstra and Astar to find the shortest path
 
@@ -13,7 +12,7 @@ A {x} * {y} grid map with {(x)*(y)} blue dots(with x from 0 to {x-1} and y from 
 
 # Step 4: Format the gpt4 output: complete output and summary output
 
-# Step 5: Compare Dijkstra/astar and gpt4 answer to check if gpt4 answer is the shortest path
+# Step 5: Compare Dijkstra/astar and gpt4 answer to evaluate if gpt4 answer is the shortest path
 * we cannot tell the no path answer by code, you can check it manually
     1. length should be equal to the length of Dijkstra 
     2. Bypass the obstacles
