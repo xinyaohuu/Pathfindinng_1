@@ -3,12 +3,7 @@ import csv
 from tqdm import tqdm
 import time
 
-
-
-
-
-# Set your API key
-openai.api_key = "x"
+openai.api_key = "you_api_key"
 i = 0
 
 
@@ -19,9 +14,8 @@ with open('RandomObs_with_paths.csv', 'r') as csv_file:
 
     for row in tqdm(csv_reader):
         i = i+1
-        # Assuming your CSV file has a column named "obs_coordinates" containing the obstacle coordinates
         obs_coordinates = eval(row['obstacles'])
-        x, y = map(int, row['mapsize'].split(' * '))  # Extract x and y from the 'mapsize' column
+        x, y = map(int, row['mapsize'].split(' * ')) 
 
 
         p1 = f"A {x} * {y} grid map with {(x)*(y)} blue dots(with x from 0 to {x} and y from 0 to {y}) representing coordinates and lines connecting them. Each adjacent coordinate is connected by a blue straight line, either horizontally or vertically, and the distance of 1. The grid starts from (0,0) at the bottom left and goes up to"
@@ -32,43 +26,35 @@ with open('RandomObs_with_paths.csv', 'r') as csv_file:
 
         my_content = p1 + p2 + p3 + p4 + p5
 
-        try:
+        completion = openai.ChatCompletion.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": "You are a math specialist."},
+                {"role": "user", "content": f"Solve the math problem: {my_content}."}
+            ],
+        )
 
-            # Send the content to OpenAI for completion
-            completion = openai.ChatCompletion.create(
-                model="gpt-4",
-                messages=[
-                    {"role": "system", "content": "You are a math specialist."},
-                    {"role": "user", "content": f"Solve the math problem: {my_content}."}
-                ],
-            )
-
-            # Extract the response
-            answer = completion['choices'][0]['message']['content']
+        answer = completion['choices'][0]['message']['content']
 
 
-            print("startxinyao")
-            print(f"{i}")
-            print(f"Math problem: {my_content}")
-            print(f"Math specialist's answer: {answer}")
-            print("endxinyao")
+        print("startxinyao")
+        print(f"{i}")
+        print(f"Math problem: {my_content}")
+        print(f"Math specialist's answer: {answer}")
+        print("endxinyao")
 
-            # Extract the path coordinates
-            final = openai.ChatCompletion.create(
-                model="gpt-4",
-                
-                messages = [
-                {"role": "user", "content": f"extract the math answer and form the path coordinates to a list, :{answer}, I only need the coordinate path answer(begin with [ and end with ]), don't recap the problem or give me ideas of soling the problem."},
+        # Extract the path coordinates
+        final = openai.ChatCompletion.create(
+            model="gpt-4",
+            
+            messages = [
+            {"role": "user", "content": f"extract the math answer and form the path coordinates to a list, :{answer}, I only need the coordinate path answer(begin with [ and end with ]), don't recap the problem or give me ideas of soling the problem."},
 
-            ]
+        ]
 
-            )
-            print("starthu")
-            print(final['choices'][0]['message']['content'])
-            print("endhu")
-        
-        except TimeoutError:
-            print(f"Time exceeded for iteration {i}")
-            continue
+        )
+        print("starthu")
+        print(final['choices'][0]['message']['content'])
+        print("endhu")
 
         time.sleep(1)
